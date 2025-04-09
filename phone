@@ -1,0 +1,35 @@
+
+# 에러처리
+
+if [ $# -eq 0 ] 
+
+then
+	
+	echo "Usage: phone searchfor [...searchfor]"
+	echo "(You didn't tell me what you want to search for.)"
+	exit 0
+fi
+
+# 입력 받은 것을 '|' 들어간거로 바꾸게끔
+
+something=$1
+
+for input in "${@:2}"
+
+
+do
+
+	something=$something\|$input
+
+done
+
+
+# egrep이랑 awk
+
+egrep  "(${something})" mydata.txt | awk -f display.awk
+
+exit 0
+
+
+
+
